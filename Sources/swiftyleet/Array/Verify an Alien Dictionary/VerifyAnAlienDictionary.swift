@@ -27,7 +27,6 @@ extension String {
 }
 
 class Solution {
-    
     func isAlienSorted(_ words: [String], _ order: String) -> Bool {
         var alienOrderMap = [Character:String.Index]()
         "abcdefghijklmnopqrstuvwxyz".forEach { c in
@@ -39,5 +38,30 @@ class Solution {
         }
         return true
     }
-    
+}
+
+class Solution2 {
+    func isAlienSorted(_ words: [String], _ order: String) -> Bool {
+        let alienOrderMap = Dictionary(uniqueKeysWithValues: order.enumerated().map({($0.element, $0.offset)}))
+        for i in 0 ..< words.count-1 {
+            let currentWord = Array(words[i]), nextWord = Array(words[i + 1])
+            var j = 0, minimumLen = min(currentWord.count, nextWord.count)
+            while j < minimumLen {
+                let currentChar = currentWord[j], nextChar = nextWord[j]
+                if currentChar == nextChar {
+                    j += 1
+                    continue
+                }
+                if alienOrderMap[currentChar]! < alienOrderMap[nextChar]! {
+                    break
+                } else {
+                    return false
+                }
+            }
+            if j == minimumLen && currentWord.count > nextWord.count {
+                return false
+            }
+        }
+        return true
+    }
 }
