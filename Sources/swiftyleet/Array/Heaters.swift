@@ -44,3 +44,35 @@ extension Solution {
         return radius
     }
 }
+
+extension Solution2 {
+    func findRadius(_ houses: [Int], _ heaters: [Int]) -> Int {
+        var i = 0, radius = 0, result = 0
+        let houses = houses.sorted(), heaters = heaters.sorted()
+        
+        if heaters.count == 0 {
+            return 0
+        }
+        
+        for house in houses {
+            while i < heaters.count && house > heaters[i]  {
+                i += 1
+            }
+            // 返回的i是最后一个heater位置+1或者是第一个比house大的heater的位置
+            if i == heaters.count {
+                // heaters.count一定大于0，返回heater.count一定是最后一个heater，且该heater一定小于或等于house
+                result = house - heaters[i-1]
+            } else if i == 0 {
+                // 特殊情况：第一个比house大的heater的位置是0
+                result = heaters[i] - house
+            } else {
+                // 返回的一定是第一个比house大的heater
+                result = min((heaters[i] - house), house - heaters[i-1])
+            }
+            
+            radius = max(radius, result)
+        }
+        
+        return radius
+    }
+}
