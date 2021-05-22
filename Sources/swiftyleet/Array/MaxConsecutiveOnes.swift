@@ -17,7 +17,7 @@ import Foundation
 extension Solution {
     func findMaxConsecutiveOnes(_ nums: [Int]) -> Int {
         var max = 0
-        var ret = nums.reduce(into: 0) { result, n in
+        let ret = nums.reduce(into: 0) { result, n in
             if n == 1 {
                 result += 1
             } else {
