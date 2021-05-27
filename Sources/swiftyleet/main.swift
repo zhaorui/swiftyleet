@@ -1,7 +1,7 @@
 
 import Foundation
 measure {
-    let result = Solution().firstUniqChar("aabb")
+    let result = Solution().findWords(["Hello","Alaska","Dad","Peace"])
     print(result)
 }
 
