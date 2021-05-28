@@ -1,7 +1,7 @@
 
 import Foundation
 measure {
-    let result = Solution().findWords(["Hello","Alaska","Dad","Peace"])
+    let result = Solution2().reverseVowels("leetcode")
     print(result)
 }
 
